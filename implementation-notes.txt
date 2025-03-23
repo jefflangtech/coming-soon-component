@@ -1,0 +1,23 @@
+#Basic setup
+
+This looks like a really nice and easy 3 column setup, where the outside columns can clamp at the minimum width we see on the mobile design (the outside columns serve at the spacing between the palpable content and the edges of the viewport). That takes care of the horizontal setup.
+
+Vertically, the spacing between content elements doesn't seem consistent, so I can't simply apply a flexbox or grid arrangement. I could still center everything in an overall center row, using the top row as the margin between content and viewport edge, and same with bottom.
+
+I thought for a hot minute that perhaps the content inside the primary container might have been setup using a 10 column grid row setup, but that appears not to be the case. So then it seems the quickest and easiest thing to do is to set up each little component section as having its own margin/padding, instead of letting the container do that.
+
+Broadly speaking then, I'm going to have the following elements, flowing down...
+
+<article>
+  <header>
+    <picture> - for the hero image
+    <hgroup> - the for the heading and accompanying text
+
+
+   <form> - for the input and button
+   <picture> - for the whatever image
+
+   <footer>
+     <div> - icons, perhaps just to make styling easier
+     <small> - the copyright text
+
