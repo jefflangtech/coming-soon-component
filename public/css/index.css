@@ -7,6 +7,7 @@
 
 :root {
   --primary-blue: hsl(223, 87%, 63%);
+  --primary-blue-active: hsl(223, 87%, 75%);
   --accent-blue: hsl(223, 100%, 88%);
   --accent-red: hsl(354, 100%, 66%);
   --gray: hsl(0, 0%, 59%);
@@ -92,11 +93,15 @@ header {
 }
 
 form#email-capture {
+  position: relative;
+  margin-bottom: 4.2rem;
+}
+
+.flex-form {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 0.8rem;
-  margin-bottom: 4.2rem;
   &> :nth-child(1) {
     flex: 2 1 0%;
   }
@@ -108,13 +113,20 @@ form#email-capture {
 input[type="email"] {
   border: 1px solid var(--accent-blue);
   border-radius: 1.5rem;
-  padding-block: 0.6rem;
+  padding-block: 0.75rem;
   padding-inline: 1.25rem;
+  color: var(--primary-blue);
+  font-size: 0.8rem;
   &::placeholder {
     color: var(--accent-blue);
     font-size: 0.8rem;
     font-weight: 600;
   }
+}
+
+input[type="email"]:focus {
+  border: 1px solid transparent;
+  outline: 2px solid var(--primary-blue);
 }
 
 button {
@@ -125,6 +137,10 @@ button {
   border-radius: 1.5rem;
   padding-block: 0.6rem;
   filter: drop-shadow(0rem 0.3rem 0.4rem var(--accent-blue));
+}
+
+button:hover {
+  background-color: var(--primary-blue-active);
 }
 
 .article-main-img {
@@ -172,6 +188,21 @@ small {
   color: var(--gray);
 }
 
+input[type="email"].error {
+  border: 1px solid transparent;
+  outline: 1px solid var(--accent-red);
+}
+
+p.error {
+  display: block;
+  position: absolute;
+  bottom: -1.1rem;
+  left: 1.25rem;
+  color: var(--accent-red);
+  font-style: italic;
+  font-size: 0.6rem;
+}
+
 @media (max-width: 575px) {
   p {
     font-size: 0.8rem;
@@ -183,8 +214,10 @@ small {
     margin-bottom: 1.6rem;
   }
   form#email-capture {
-    gap: 0.5rem;
     margin-bottom: 3.3rem;
+  }
+  .flex-form {
+    gap: 0.5rem;
     justify-content: center;
     &> :nth-child(1) {
       flex: 1 1 100%;
@@ -241,4 +274,8 @@ small {
   small {
     font-size: 0.5rem;
   }
+}
+
+.hidden {
+  display: none;
 }

@@ -25,14 +25,14 @@
 </head>
 <body>
   <!-- This is for pixel proofing -->
-  <div id="overlay">
-    <!-- <picture id="desktop-overlay">
+  <!-- <div id="overlay" hidden>
+    <picture id="desktop-overlay">
       <img src="./design/desktop-design.jpg">
-    </picture> -->
+    </picture>
     <picture id="mobile-overlay">
       <img src="./design/mobile-design.jpg">
     </picture>
-  </div>
+  </div> -->
 
   <main>
     <article>
@@ -46,9 +46,12 @@
         </hgroup>
       </header>
 
-      <form action="#" id="email-capture">
-        <input type="email" placeholder="Your email address...">
-        <button>Notify Me</button>
+      <form action="#" id="email-capture" novalidate>
+        <div class="flex-form">
+          <input id="email-input" type="email" required placeholder="Your email address...">
+          <button>Notify Me</button>
+        </div>
+        <p id="error-message" class="hidden">Please provide a valid email address</p>
       </form>
       <picture class="article-main-img">
         <img src="./public/images/illustration-dashboard.png" alt="The ping dashboard">

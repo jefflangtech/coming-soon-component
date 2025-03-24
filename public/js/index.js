@@ -9,3 +9,13 @@ document.addEventListener("keydown", (event) => {
       }
   }
 });
+
+// Basic start of custom email validation
+const emailForm = document.getElementById('email-capture');
+const emailInput = document.getElementById('email-input');
+const errorMsg = document.getElementById('error-message');
+
+emailForm.addEventListener('submit', (e) => {
+  emailInput.classList.add('error');
+  errorMsg.classList.add('error');
+});
