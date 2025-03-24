@@ -36,17 +36,15 @@ html {
     width: 100%;
     height: 100%;
     opacity: 0.4;
-    outline:1px solid red;
   }
 }
 #mobile-overlay {
   width: 375px;
-  height: 709px;
+  height: 812px;
   & img {
     width: 100%;
     height: 100%;
     opacity: 0.4;
-    outline:1px solid red;
   }
 }
 
@@ -58,10 +56,10 @@ html {
 body {
   display: grid;
   grid-template-columns: 
-    minmax(2.75rem, 1fr) 
+    minmax(1.375rem, 1fr) 
     [content-start] minmax(10.5rem, 32rem) [content-end] 
-    minmax(2.75rem, 1fr);
-  grid-template-rows: 4.18rem 1fr 100px;
+    minmax(1.375rem, 1fr);
+  grid-template-rows: 4.18rem 1fr min(2rem);
 }
 
 h1 {
@@ -83,19 +81,17 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* outline: 1px solid red; */
   }
 }
 
 .hero-img {
   margin-bottom: 2.5rem;
-  &img {
+  & img {
     width: 4.5rem;
   }
 }
 
 form#email-capture {
-  /* outline: 1px solid red; */
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -174,4 +170,75 @@ footer {
 small {
   font-size: 0.6rem;
   color: var(--gray);
+}
+
+@media (max-width: 575px) {
+  p {
+    font-size: 0.8rem;
+  }
+  h1 {
+    font-size: 1.8rem;
+  }
+  header {
+    margin-bottom: 1.6rem;
+  }
+  form#email-capture {
+    gap: 0.5rem;
+    margin-bottom: 3.3rem;
+    justify-content: center;
+    &> :nth-child(1) {
+      flex: 1 1 100%;
+      max-width: 90%;
+    }
+    &> :nth-child(2) {
+      flex: 1 1 100%;
+      max-width: 90%;
+    }
+  }
+  .article-main-img {
+    margin-bottom: 6rem;
+  }
+}
+
+@media (max-width: 445px) {
+  :is(p, input[type="email"], button) {
+    font-size: 0.6rem;
+  }
+  h1 {
+    font-size: 1.1rem;
+  }
+  .hero-img {
+    margin-bottom: 2rem;
+    & img {
+      width: 2.8rem;
+    }
+  }
+  input[type="email"] {
+    border-radius: 1rem;
+    padding-block: 0.45rem;
+    padding-inline: 1.25rem;
+    &::placeholder {
+      color: var(--accent-blue);
+      font-size: 0.6rem;
+      font-weight: 300;
+    }
+  }
+  button {
+    font-size: 0.6rem;
+    font-weight: 300;
+    border-radius: 1rem;
+    padding-block: 0..45rem;
+  }
+  .icons {
+    & a {
+      width: 1.6rem;
+      height: 1.6rem;
+    }
+    & svg {
+    height: 0.7rem;
+    }
+  }
+  small {
+    font-size: 0.5rem;
+  }
 }
