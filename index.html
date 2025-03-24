@@ -15,7 +15,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./public/images/jlt-favicon-v4.png">
 
   <!-- CSS -->
-  <link rel="stylesheet" href="./public/css/index.css">
+  <link rel="stylesheet" href="./public/css/reset.css">
   <link rel="stylesheet" href="./public/css/index.css">
 
   <!-- Fonts -->
@@ -24,13 +24,43 @@
   <meta name="robots" content="index,follow">
 </head>
 <body>
-  We are launching soon!
+  <!-- This is for pixel proofing -->
+  <div id="overlay">
+    <picture id="desktop-overlay">
+      <img src="./design/desktop-design.jpg">
+    </picture>
+    <!-- <picture id="mobile-overlay">
+      <img src="./design/mobile-design.jpg">
+    </picture> -->
+  </div>
 
-  Subscribe and get notified
+  <main>
+    <article>
+      <header>
+        <picture class="hero-img">
+          <img src="./public/images/logo.svg" alt="The Ping Brand">
+        </picture>
+        <hgroup>
+          <h1>We are launching <span class="text-attention">soon!</span></h1>
+          <p>Subscribe and get notified</p>
+        </hgroup>
+      </header>
 
-  Notify Me
+      <form action="#" id="email-capture">
+        <input type="email" placeholder="Your email address...">
+        <button>Notify Me</button>
+      </form>
+      <picture class="article-main-img">
+        <img src="./public/images/illustration-dashboard.png" alt="The ping dashboard">
+      </picture>
 
-  &copy; Copyright Ping. All rights reserved.
+      <footer>
+        <div class="icons"></div>
+        <small>&copy; Copyright Ping. All rights reserved.</small>
+      </footer>
+    </article>
+  </main>
+
  <script src="./public/js/index.js"></script>
 </body>
 </html>

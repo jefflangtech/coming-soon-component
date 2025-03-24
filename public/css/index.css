@@ -5,6 +5,132 @@
   font-style: normal;
 }
 
-body {
+:root {
+  --primary-blue: hsl(223, 87%, 63%);
+  --accent-blue: hsl(223, 100%, 88%);
+  --accent-red: hsl(354, 100%, 66%);
+  --gray: hsl(0, 0%, 59%);
+  --white: hsl(0, 0%, 100%);
+  --text: hsl(209, 33%, 12%);
+}
+
+html {
   font-family: 'Libre Franklin', sans-serif;
+  font-size: 20px;
+  color: var(--text);
+}
+
+/* Overlay styles for pixel proofing only */
+#overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 900;
+  grid-column: 1;
+  grid-row: 1;
+}
+#desktop-overlay {
+  width: 1440px;
+  height: 1024px;
+  & img {
+    width: 100%;
+    height: 100%;
+    opacity: 0.4;
+    outline:1px solid red;
+  }
+}
+#mobile-overlay {
+  width: 375px;
+  height: 709px;
+  & img {
+    width: 100%;
+    height: 100%;
+    opacity: 0.4;
+    outline:1px solid red;
+  }
+}
+
+.text-attention {
+  color: var(--text);
+  font-weight: 700;
+}
+
+body {
+  display: grid;
+  grid-template-columns: 
+    minmax(2.75rem, 1fr) 
+    [content-start] minmax(10.5rem, 32rem) [content-end] 
+    minmax(2.75rem, 1fr);
+  grid-template-rows: 4.18rem 1fr 100px;
+}
+
+h1 {
+  color: var(--gray);
+  font-weight: 300;
+  font-size: 2.4rem;
+  line-height: 125%;
+  margin-bottom: 0.7rem;
+}
+
+main {
+  grid-column: content-start / content-end;
+  grid-row: 2;
+}
+
+header {
+  margin-bottom: 1.8rem;
+  &> * {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* outline: 1px solid red; */
+  }
+}
+
+.hero-img {
+  margin-bottom: 2.5rem;
+  &img {
+    width: 4.5rem;
+  }
+}
+
+form#email-capture {
+  /* outline: 1px solid red; */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-bottom: 4.2rem;
+  &> :nth-child(1) {
+    flex: 2 1 0%;
+  }
+  &> :nth-child(2) {
+    flex: 1 1 0%;
+  }
+}
+
+input[type="email"] {
+  border: 1px solid var(--accent-blue);
+  border-radius: 1.5rem;
+  padding-block: 0.6rem;
+  padding-inline: 1.25rem;
+  &::placeholder {
+    color: var(--accent-blue);
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+}
+
+button {
+  color: var(--white);
+  font-size: 0.8rem;
+  font-weight: 600;
+  background-color: var(--primary-blue);
+  border-radius: 1.5rem;
+  padding-block: 0.6rem;
+  filter: drop-shadow(0rem 0.3rem 0.4rem var(--accent-blue));
+}
+
+.article-main-img img {
+  width: 100%;
 }
