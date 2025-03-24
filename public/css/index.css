@@ -131,6 +131,47 @@ button {
   filter: drop-shadow(0rem 0.3rem 0.4rem var(--accent-blue));
 }
 
-.article-main-img img {
+.article-main-img {
+  margin-bottom: 3.7rem;
+  & img {
   width: 100%;
+  }
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.icons {
+  display: flex;
+  flex-direction: row;
+  gap: 0.65rem;
+  margin-bottom: 1.1rem;
+  & a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--primary-blue);
+    text-decoration: none;
+    border: 1px solid var(--accent-blue);
+    border-radius: 50%;
+    width: 1.5rem;
+    height: 1.5rem;
+    &:hover {
+      color: var(--white);
+      background-color: var(--primary-blue);
+      border-color: var(--primary-blue);
+    }
+  }
+  & svg {
+  color: inherit;
+  height: 0.6rem;
+  }
+}
+
+small {
+  font-size: 0.6rem;
+  color: var(--gray);
 }
