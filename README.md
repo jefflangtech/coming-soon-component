@@ -20,12 +20,11 @@ This is a solution to the [Recipe page challenge on Frontend Mentor](https://www
 ### Preview
 
 ![Solution Preview](./preview.png)
-I forgot to move the mouse cursor, haha.
 
 ### Links
 
-- Solution URL: [FrontEnd Mentor Solution](https://www.frontendmentor.io/solutions/css-grid-with-html-templates-and-json-data-loading-D0dMwlJPSb)
-- Live Site URL: [Github](https://jefflangtech.github.io/recipe-card/)
+- Solution URL: [FrontEnd Mentor Solution]()
+- Live Site URL: [Github](https://jefflangtech.github.io/coming-soon-component/)
 
 ## My process
 
