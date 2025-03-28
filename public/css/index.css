@@ -105,7 +105,7 @@ form#email-capture {
   &> :nth-child(1) {
     flex: 2 1 0%;
   }
-  &> :nth-child(2) {
+  &> :nth-child(3) {
     flex: 1 1 0%;
   }
 }
@@ -223,10 +223,16 @@ p.error {
       flex: 1 1 100%;
       max-width: 90%;
     }
-    &> :nth-child(2) {
+    &> :nth-child(3) {
       flex: 1 1 100%;
       max-width: 90%;
     }
+  }
+  p.error {
+    display: block;
+    position: relative;
+    bottom: 0;
+    left: 0;
   }
   .article-main-img {
     margin-bottom: 6rem;
