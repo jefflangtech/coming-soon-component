@@ -17,14 +17,12 @@ async function getTLDlist() {
   const cacheTimeKey = 'tldTimeStamp';
   const maxAge = 1000 * 60 * 60 * 24 * 7;
 
-  console.log('Checking cache for TLD file');
   const cachedData = localStorage.getItem(cacheKey);
   const cachedTime = localStorage.getItem(cacheTimeKey);
 
   const isFresh = cachedData && cachedTime && (Date.now() - Number(cachedTime) < maxAge);
 
   if(isFresh) {
-    console.log('Using fresh cached TLD data');
     return cachedData;
   }
 
@@ -49,7 +47,6 @@ async function getTLDlist() {
   catch (error) {
     console.error(error.message);
     if(cachedData) {
-      console.log('Using old TLD cache');
       return cachedData;
     }
   }
@@ -57,11 +54,8 @@ async function getTLDlist() {
 
 async function parseTLDFile() {
   const tldFile = await getTLDlist();
-  console.log('TLD list loaded');
 
   const parsedTLDs = tldFile.split('\n').filter(line => line && !line.startsWith('#')).map(tld => tld.toLowerCase());
-
-  console.log(`Array of TLDs length: ${parsedTLDs.length}`);
 
   return parsedTLDs;
 }
@@ -111,12 +105,4 @@ emailForm.addEventListener('submit', async (e) => {
     emailInput.classList.add('error');
     errorMsg.classList.add('error');
   }
-
-
-
-  // console.log(prefixPattern.test(prefix));
-
-
-  // emailInput.classList.add('error');
-  // errorMsg.classList.add('error');
 });

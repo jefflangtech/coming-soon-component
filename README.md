@@ -32,67 +32,69 @@ This is a solution to the [Recipe page challenge on Frontend Mentor](https://www
 
 - Semantic HTML5 markup
 - CSS custom properties
-- CSS Grid
-- HTML Templates
+- Custom JS validation
 
 ### Step by step
 
-I went big-to-small when approaching the styling. This was the first time that I tried keeping all the layout rules at the document level (in this case I went grid) and plugged in components that had no margin of their own, only concerned with styling their internal contents. 
+This design didn't seem to lend itself to a straight-forward grid or flex container, using gap to separate out the components. So while it is a grid layout that's primarily for positioning the primary content and facilitating responsive design.
 
 I find it helpful to markup a screenshot of the design:
-![Preview Markup](./design/desktop-preview-markup.png)
-I also missed one grid row, since the hero image needs to occupy its own row, and then I was able to break it out when switching to mobile. I used named grid lines to do that.
+![Preview Markup](./design/layout-notes.png)
 
-Here is all the content in the center column, between [start-col] and [end-col].
+The most fun stuff was in the custom email validation script, and I stuck pretty close to email standards, with the exception of the stranger stuff like allowing various special characters in quotes for the prefix, or a bracketed domain address for the hostname. I think my email validation is actually looser than hotmail, so that's something.
 
-```css
-main {
-  display: grid;
-  grid-template-columns: 
-    [start-left] 5rem 
-    [start-col] 656px [end-col] 
-    5rem [end-right];
-  grid-template-rows: repeat(auto-fit, minmax(100px, auto));
-  row-gap: 4rem;
-}
-main > * {
-  grid-column: start-col / end-col;
-  grid-row: auto;
-}
-```
-
-Breaking the hero image out just means to set the grid-column to [start-left] / [end-right]. Pretty nifty!
-
-Finally, here is my custom element in the JS (I excluded the content setter method). First time using custom elements and I'll probably spend some time exploring those use cases more.
+Another thing I did was to dynamically pull the text file from IANA to get all the approved top level domains (TLD), with the file being cached in local storage for a week. And that segment of the provided email address is checked against that list.
 
 ```js
-class RecipeCard extends HTMLElement {
-  constructor() {
-    super();
-    this.template = document.createElement("template");
-    this.template.innerHTML = `
-      <h2 id="card-title"></h2>
-      <div id="card-body">
-        <slot></slot>
-      </div>
-    `;
+// Fetch the top level domains list - text file
+async function getTLDlist() {
+
+  const cacheKey = 'tldList';
+  const cacheTimeKey = 'tldTimeStamp';
+  const maxAge = 1000 * 60 * 60 * 24 * 7;
+
+  const cachedData = localStorage.getItem(cacheKey);
+  const cachedTime = localStorage.getItem(cacheTimeKey);
+
+  const isFresh = cachedData && cachedTime && (Date.now() - Number(cachedTime) < maxAge);
+
+  if(isFresh) {
+    return cachedData;
   }
 
-  connectedCallback() {
-    this.appendChild(this.template.content.cloneNode(true));
+  try {
+    console.log('Fetching TLD data file');
+    const url = 'https://data.iana.org/TLD/tlds-alpha-by-domain.txt';
+    const response = await fetch(url);
+    if(!response.ok) {
+      throw new Error(`Response status: ${response.status}`);
+    }
+    const file = await response.text();
+    if(!file) {
+      throw new Error(`Error with file stream`);
+    }
+
+    localStorage.setItem(cacheKey, file);
+    localStorage.setItem(cacheTimeKey, Date.now().toString());
+
+    return file;
+  }
+  catch (error) {
+    console.error(error.message);
+    if(cachedData) {
+      return cachedData;
+    }
   }
 }
-
-customElements.define('recipe-card', RecipeCard);
 ```
 
 ### Continued development
 
-I went light DOM for this project, preferring to let styling for my injected component elements come from global rules. I did structure the CSS in a way that it would have been pretty easy to go shadow DOM and encapsulate component styling, but I'll do that with a future challenge. I also want to try using shadow DOM components that get styling from the global rules, as that sounds like a more complicated challenge.
+My JS was pretty quick and dirty--I'd like to improve the structure and organization of my logic for future projects, but this was good enough for now. The next project I'm going to start rigorously improving my layout and styling speed. 
 
 ### Useful resources
 
-- [Kevin Powell: 3 underused CSS Grid Features](https://www.youtube.com/watch?v=ciuZJE74wBA) - This wasn't the original video I saw, but he does still explain how to manipulate content across grid columns using named grid lines. I used this to break out the hero image in the mobile view.
+- Heavy use of MDN this time around. But that's what it's there for!
 
 ## Author
 
